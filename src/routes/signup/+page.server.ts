@@ -1,8 +1,12 @@
 import { fail, redirect } from "@sveltejs/kit";
 import { PUBLIC_ALLOW_SIGNUP } from "$env/static/public";
-import { pb } from '$lib/pocketbase'
-import type { Actions } from "./$types";
-import { match } from "assert";
+import type { PageServerLoad, Actions } from "./$types";
+
+export const load = (({ locals }) => {
+  if (locals.pb.authStore.isValid) {
+    throw redirect(303, '/home');
+  }
+}) satisfies PageServerLoad;
 
 export const actions: Actions = {
   default: async ({ locals, request }) => {
@@ -17,8 +21,8 @@ export const actions: Actions = {
     }
 
     try {
-      await pb.collection("users").create(data);
-      await pb
+      await locals.pb.collection("users").create(data);
+      await locals.pb
         .collection("users")
         .authWithPassword(data.email, data.password);
     } catch (e: any) {

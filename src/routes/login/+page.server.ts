@@ -1,13 +1,9 @@
 import { fail, redirect } from "@sveltejs/kit";
-import { pb } from '$lib/pocketbase'
 import type { Actions } from "./$types";
 import type { PageServerLoad } from "./$types";
 
 export const load = (({ locals }) => {
-
-  if (!pb.authStore.isValid) {
-    throw redirect(303, '/login?origin=/home');
-  } else {
+  if (locals.pb.authStore.isValid) {
     throw redirect(303, '/home');
   }
 }) satisfies PageServerLoad;
@@ -20,7 +16,7 @@ export const actions: Actions = {
     }
 
     try {
-      await pb
+      await locals.pb
         .collection('users')
         .authWithPassword(data.email, data.password)
     } catch (_) {

@@ -3,7 +3,7 @@
   import { PUBLIC_ALLOW_SIGNUP } from "$env/static/public";
   import { pb } from "$lib/pocketbase";
   import { page } from "$app/stores";
-  import { addToast } from "$lib/toast.svelte";
+  import { addToast } from "$lib/components/Toast.svelte";
 
   $: if ($page?.form?.error) {
     addToast({
@@ -19,7 +19,6 @@
 <div class="flex items-center justify-center sm:p-20 p-10 bg-primary-20 rounded-xl">
   <form
     method="POST"
-    class="card"
     use:enhance={() => {
 			return async ({ result }) => {
 				pb.authStore.loadFromCookie(document.cookie);
@@ -34,7 +33,7 @@
           type="email"
           name="email"
           id="email"
-          class="h-10 w-[240px] rounded-md px-3 py-2 text-primary-30 bg-primary-10"
+          class="h-10 w-[240px] rounded-md px-3 py-2 text-primary-30 bg-primary-10 placeholder-primary-30"
           placeholder="Email"
         />
       </div>
@@ -43,7 +42,7 @@
           type="password"
           name="password"
           id="password"
-          class="h-10 w-[240px] rounded-md px-3 py-2 text-primary-30 bg-primary-10"
+          class="h-10 w-[240px] rounded-md px-3 py-2 text-primary-30 bg-primary-10 placeholder-primary-30"
           placeholder="password"
         />
       </div>
@@ -52,7 +51,6 @@
         Login
       </button>
       {#if PUBLIC_ALLOW_SIGNUP !== 'false'}
-        <div class="divider px-20" />
         <div class="flex gap-2 justify-center">
           <p>Don't have an account?</p>
           <a href="/signup" class="text-primary-50 font-medium">Sign Up</a>

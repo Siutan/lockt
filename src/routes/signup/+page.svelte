@@ -2,9 +2,12 @@
   import { applyAction, enhance } from "$app/forms";
   import { pb } from "$lib/pocketbase";
   import { page } from "$app/stores";
-  import { addToast } from "$lib/toast.svelte";
+  import { addToast } from "$lib/components/Toast.svelte";
+
+  let loading = false;
 
   $: if ($page?.form?.error) {
+    loading = false;
     addToast({
       data: {
         title: 'Error',
@@ -20,6 +23,7 @@
     method="POST"
     class="card"
     use:enhance={() => {
+        loading = true;
 			return async ({ result }) => {
 				pb.authStore.loadFromCookie(document.cookie);
 				await applyAction(result);
@@ -33,7 +37,7 @@
           type="email"
           name="email"
           id="email"
-          class="h-10 w-[240px] rounded-md px-3 py-2 text-primary-30 bg-primary-10"
+          class="h-10 w-[240px] rounded-md px-3 py-2 text-primary-30 bg-primary-10 placeholder-primary-30"
           placeholder="Email"
         />
       </div>
@@ -42,7 +46,7 @@
           type="password"
           name="password"
           id="password"
-          class="h-10 w-[240px] rounded-md px-3 py-2 text-primary-30 bg-primary-10"
+          class="h-10 w-[240px] rounded-md px-3 py-2 text-primary-30 bg-primary-10 placeholder-primary-30"
           placeholder="password"
         />
       </div>
@@ -51,7 +55,7 @@
           type="password"
           name="passwordConfirm"
           id="passwordConfirm"
-          class="h-10 w-[240px] rounded-md px-3 py-2 text-primary-30 bg-primary-10"
+          class="h-10 w-[240px] rounded-md px-3 py-2 text-primary-30 bg-primary-10 placeholder-primary-30"
           placeholder="Confirm Password"
         />
       </div>
@@ -59,10 +63,15 @@
         class="w-full h-10 rounded-md bg-primary-50 px-3 py-1 font-medium text-primary-10 hover:opacity-75 active:opacity-50">
         Login
       </button>
-        <div class="divider px-20" />
         <div class="flex gap-2 justify-center">
           <p>Already have an account?</p>
-          <a href="/login" class="text-primary-50 font-medium">Log In</a>
+          <a href="/login" class="text-primary-50 font-medium">
+            {#if loading}
+              Logging in...
+            {:else}
+              Login
+            {/if}
+          </a>
         </div>
     </div>
   </form>

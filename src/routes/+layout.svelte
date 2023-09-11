@@ -1,15 +1,22 @@
 <script>
 	import "../app.css";
-	import Toast from '$lib/Toast.svelte'
+	import { onNavigate } from '$app/navigation';
+	import Toast from '$lib/components/Toast.svelte'
+
+	onNavigate((navigation) => {
+		if (!document.startViewTransition) return;
+
+		return new Promise((resolve) => {
+			document.startViewTransition(async () => {
+				resolve();
+				await navigation.complete;
+			});
+		});
+	});
 </script>
 
 <Toast/>
 
-<main class="w-screen h-screen bg-primary-40 overflow-hidden">
-	<div class="flex justify-center items-center w-full h-full">
-		<slot />
-	</div>
+<main class="flex justify-center items-center min-h-screen bg-primary-40">
+	<slot />
 </main>
-
-<style>
-</style>
