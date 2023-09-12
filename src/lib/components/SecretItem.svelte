@@ -20,16 +20,20 @@
     forceVisible: true
   });
 
+  const decrypted = async () => {
+    return await decrypt(secret);
+  };
+
   // use clipboard api to copy secret
   const copy = async () => {
     try {
       // decrypt secret
-      await navigator.clipboard.writeText(await decrypt(secret));
+      await navigator.clipboard.writeText(await decrypted());
       addToast({
         data: {
           title: "Success",
           description: "Copied to clipboard",
-          color: "bg-green-800/20"
+          color: "bg-mocha-blue/50"
         }
       });
     } catch (err) {
@@ -38,16 +42,16 @@
   };
 </script>
 
-<button class=" max-w-[400px] px-2 py-3 rounded-lg bg-primary-20 hover:bg-primary-20/80 cursor-pointer" on:click={copy}>
+<button class=" max-w-[400px] px-2 py-3 rounded-lg bg-mocha-lavender/80 hover:bg-mocha-lavender/70 cursor-pointer" on:click={copy}>
   <span class="flex flex-col">
     <span class="flex items-center justify-start gap-5">
-    <span class="px-3 py-1 max-w-32 rounded-lg bg-primary-30 text-primary-10 font-semibold capitalize">
+    <span class="px-3 py-1 max-w-32 rounded-lg bg-mocha-base text-mocha-blue font-semibold capitalize ">
       {type}
     </span>
-      <span class="text-xl font-bold text-primary-40 {type !== 'website' ? 'capitalize' : ''}">{source}</span>
+      <span class="text-xl font-bold text-mocha-surface0 truncate {type !== 'website' ? 'capitalize' : ''}">{source}</span>
     </span>
     <span class="flex justify-between pr-2">
-      <span class="text-2xl font-semibold text-primary-10 truncate">{identity}</span>
+      <span class="text-2xl font-bold text-mocha-crust truncate">{identity}</span>
       <span>
         <button
           type="button"
@@ -56,7 +60,7 @@
           use:melt={$trigger}
           aria-label="Update Secret"
         >
-          <Settings2 class="text-primary-10" />
+          <Settings2 />
           <span class="sr-only">Open Actions</span>
         </button>
       </span>
@@ -68,11 +72,11 @@
   <div use:melt={$content} transition:fade={{ duration: 100 }} class="content">
     <div use:melt={$arrow}></div>
     <div class="flex flex-col gap-2.5">
-      <form class="rounded-md px-4 max-h-full text-primary-10" method="POST"
+      <form class="rounded-md px-4 max-h-full text-mocha-base" method="POST"
             action="?/editSecret" use:enhance>
         <div class="mt-6 flex flex-col h-full justify-between gap-4">
           <div class="flex gap-1">
-            <p class="text-sm font-medium text-primary-40 italic ">ID: {id}</p>
+            <p class="text-sm font-medium text-mocha-subtext0 italic ">ID: {id}</p>
             <input
               hidden
               type="text"
@@ -84,7 +88,7 @@
             <select
               name="type"
               id="type"
-              class="h-10 w-full rounded-md px-3 py-2 text-primary-40 bg-primary-10 placeholder-primary-30 outline-primary-30 font-bold"
+              class="h-10 w-full rounded-md px-3 py-2 text-mocha-base bg-mocha-lavender placeholder-mocha-base outline-mocha-mantle font-bold"
               value={type}
             >
               <option disabled selected class="disabled:text-primary-40">Type</option>
@@ -99,7 +103,7 @@
               type="text"
               name="source"
               id="source"
-              class="h-10 w-full rounded-md px-3 py-2 text-primary-30 bg-primary-10 placeholder-primary-30 outline-primary-30"
+              class="h-10 w-full rounded-md px-3 py-2 text-mocha-blue bg-mocha-base placeholder-mocha-blue outline-mocha-mantle"
               placeholder="Account/Website"
               value="{source}"
             />
@@ -109,7 +113,7 @@
               type="text"
               name="identity"
               id="identity"
-              class="h-10 w-full rounded-md px-3 py-2 text-primary-30 bg-primary-10 placeholder-primary-30 outline-primary-30"
+              class="h-10 w-full rounded-md px-3 py-2 text-mocha-blue bg-mocha-base placeholder-mocha-blue outline-mocha-mantle"
               placeholder="Username/Email"
               value="{identity}"
             />
@@ -119,9 +123,9 @@
               type="password"
               name="secret"
               id="secret"
-              class="h-10 w-full rounded-md px-3 py-2 text-primary-30 bg-primary-10 placeholder-primary-30 outline-primary-30"
+              class="h-10 w-full rounded-md px-3 py-2 text-mocha-blue bg-mocha-base placeholder-mocha-blue outline-mocha-mantle"
               placeholder="Password"
-              value="{secret}"
+              value="{decrypted()}"
             />
           </div>
           <div class="flex justify-center gap-5">
@@ -129,7 +133,7 @@
               formaction="?/deleteSecret"
               class="inline-flex h-8 items-center justify-center
                             rounded-lg bg-primary-50 px-4 font-medium leading-none
-                            text-primary-10 focus:outline-none hover:bg-rose-900/90"
+                            text-mocha-base focus:outline-none hover:bg-rose-900/90"
             >
               Delete
             </button>
@@ -137,7 +141,7 @@
               type="submit"
               class="inline-flex h-8 items-center justify-center
                             rounded-lg px-4 font-medium leading-none
-                            text-primary-10 focus:outline-none hover:bg-primary-40/70"
+                            text-mocha-blue focus:outline-none hover:bg-primary-40/70"
             >
               Update
             </button>
@@ -153,8 +157,8 @@
 
 <style lang="postcss">
     .trigger {
-        @apply inline-flex h-9 w-9 items-center justify-center rounded-full bg-primary-30 p-0;
-        @apply text-sm font-medium text-primary-10 transition-colors hover:bg-primary-40/90;
+        @apply inline-flex h-9 w-9 items-center justify-center rounded-full bg-mocha-base p-0;
+        @apply text-sm font-medium text-mocha-blue transition-colors hover:bg-mocha-base/80;
         @apply focus-visible:ring focus-visible:ring-primary-40 focus-visible:ring-offset-2;
     }
 
@@ -166,6 +170,6 @@
     }
 
     .content {
-        @apply z-10 w-60 rounded-lg bg-primary-30 p-5 shadow-sm;
+        @apply z-10 w-full -mx-2 sm:w-60 rounded-lg bg-mocha-mantle p-5 shadow-sm;
     }
 </style>

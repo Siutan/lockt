@@ -17,6 +17,6 @@
 
 <Toast/>
 
-<main class="flex justify-center items-center min-h-screen bg-primary-40">
+<main class="flex justify-center items-center min-h-screen bg-mocha-crust">
 	<slot />
 </main>
