@@ -1,7 +1,6 @@
 .DS_Store
 node_modules
-/pocketbase/pb_data
-/pocketbase/pb_migrations
+/pocketbase/*
 /build
 /.svelte-kit
 /package
