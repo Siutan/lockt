@@ -5,9 +5,12 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  crypto-es:
+    specifier: ^2.0.4
+    version: 2.0.4
   lucide-svelte:
-    specifier: ^0.274.0
-    version: 0.274.0(svelte@4.2.0)
+    specifier: ^0.276.0
+    version: 0.276.0(svelte@4.2.0)
   pocketbase:
     specifier: ^0.18.0
     version: 0.18.0
@@ -878,6 +881,10 @@ packages:
       which: 2.0.2
     dev: true
 
+  /crypto-es@2.0.4:
+    resolution: {integrity: sha512-GJxgJJ7HjGzwT7iQF0K9RertKkzgSKUXd8X2aQ7RGDS8yMVDzIBFMNHID9hnj48Ep8NAICHWV1CFIETlVNZ/Lg==}
+    dev: false
+
   /css-tree@2.3.1:
     resolution: {integrity: sha512-6Fv1DV/TYw//QF5IzQdqsNDjx/wc8TrMBZsqjL9eW01tWb7R7k/mq+/VXfJCl7SoD5emsJop9cOByJZfs8hYIw==}
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0}
@@ -1473,8 +1480,8 @@ packages:
       yallist: 4.0.0
     dev: true
 
-  /lucide-svelte@0.274.0(svelte@4.2.0):
-    resolution: {integrity: sha512-+8bKZyOdadiaksrGOftNRfz52PMcddSmNDd1invTrqLTaAg00mrVrHuh6hHypFCpQhZLKrsEHqHl/TwITe/VsA==}
+  /lucide-svelte@0.276.0(svelte@4.2.0):
+    resolution: {integrity: sha512-SKj37PCOHe8gHxogidf1+TJKeezgir/yjrC6GWs2VyiCQKjnURBB6VZ/w1qFDItTTfnX0uJHEP/VxCDdT7lDJw==}
     peerDependencies:
       svelte: '>=3 <5'
     dependencies:

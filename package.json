@@ -37,7 +37,8 @@
     "vite": "^4.4.2"
   },
   "dependencies": {
-    "lucide-svelte": "^0.274.0",
+    "crypto-es": "^2.0.4",
+    "lucide-svelte": "^0.276.0",
     "pocketbase": "^0.18.0"
   },
   "type": "module"

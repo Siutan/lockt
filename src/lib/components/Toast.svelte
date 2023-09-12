@@ -35,7 +35,7 @@
         <div>
           <h3 use:melt={$title(id)} class="flex items-center gap-2 font-semibold">
             {data.title}
-            <span class="rounded-full square-1.5 bg-primary-20" />
+            <span class="rounded-full square-1.5 bg-primary-20"></span>
           </h3>
           <div use:melt={$description(id)}>
             {data.description}

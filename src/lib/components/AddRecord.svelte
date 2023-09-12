@@ -2,10 +2,8 @@
   import { enhance } from "$app/forms";
   import { createDialog, melt } from "@melt-ui/svelte";
   import { fade, fly } from "svelte/transition";
-  import { X } from "lucide-svelte";
+  import { X, Plus } from "lucide-svelte";
   import { page } from "$app/stores";
-
-  $: console.log($page.form);
 
   const {
     elements: {
@@ -96,7 +94,7 @@
             </div>
             <div class="flex justify-center gap-5">
               <button
-                type="reset"
+                use:melt={$close}
                 class="inline-flex h-8 items-center justify-center
                             rounded-[4px] bg-primary-50 px-4 font-medium leading-none
                             text-primary-10 focus:outline-none focus:ring-2
@@ -137,7 +135,7 @@
 
 
 <button
-  class="fixed bottom-10 right-10 flex items-center justify-center w-16 h-16 bg-primary-10 rounded-xl hover:bg-primary-30 duration-500"
+  class="fixed bottom-10 right-10 flex items-center justify-center w-14 h-14 bg-primary-50 rounded-xl hover:bg-rose-800/80 duration-500"
   use:melt={$trigger}>
-  <span class="text-4xl text-primary-40">+</span>
+  <Plus class="square-6 text-primary-10" />
 </button>

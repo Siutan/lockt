@@ -1,22 +1,7 @@
 <script>
-  import { applyAction, enhance } from "$app/forms";
-  import { pb } from "$lib/pocketbase";
   import SecretItem from "$lib/components/SecretItem.svelte";
-
   export let data;
 </script>
-<form
-  method="POST"
-  action="/logout"
-  use:enhance={() => {
-                return async ({ result }) => {
-                  pb.authStore.clear()
-                  await applyAction(result)
-                }
-              }}
->
-  <button>Log out</button>
-</form>
 
 {#if data.records.length === 0}
   <div class="flex items-center justify-center w-full h-screen text-primary-10 p-10">
@@ -26,7 +11,7 @@
     </div>
   </div>
 {:else}
-  <div class="grid grid-cols-4 grid-flow-row auto-rows-max gap-5 px-16 py-8">
+  <div class="grid grid-cols-1 sm:grid-cols-4 grid-flow-row auto-rows-max gap-5 px-5 sm:px-16 py-8">
     {#each data.records as record}
       <SecretItem {...record} />
     {/each}
