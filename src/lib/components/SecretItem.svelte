@@ -4,7 +4,7 @@
   import { createPopover, melt } from "@melt-ui/svelte";
   import { fade } from "svelte/transition";
   import { X, Settings2 } from "lucide-svelte";
-  import { decrypt } from "$lib/crypto";
+  import { decrypt } from "$lib/crypt";
 
   export let id: string;
   export let type: string;

@@ -19,9 +19,8 @@ export const actions: Actions = {
       await locals.pb
         .collection('users')
         .authWithPassword(data.email, data.password)
-    } catch (_) {
-      console.error(_)
-      return fail(400, { error: 'Invalid Email or Password.', success: false, email: data.email })
+    } catch (e: any) {
+      return fail(400, { error: e.message, success: false, email: data.email })
     }
 
     throw redirect(303, '/home')

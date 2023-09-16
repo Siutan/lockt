@@ -1,6 +1,6 @@
 import { redirect, fail } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
-import { encrypt } from "$lib/crypto";
+import { encrypt } from "$lib/crypt";
 
 export const load = (async ({ locals }) => {
 	if (!locals.pb.authStore.isValid) {

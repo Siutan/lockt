@@ -13,11 +13,11 @@ import { Settings, ArrowLeft } from "lucide-svelte";
       <div class="flex items-center justify-between w-[50vw]">
         <h1 class="text-4xl font-black italic text-mocha-sapphire">Lockt</h1>
         {#if $page.url.pathname === "/settings"}
-          <a href="/home" class="bg-mocha-base border border-mocha-blue text-mocha-blue p-1 rounded-md">
+          <a href="/home" class="bg-mocha-base border border-mocha-blue text-mocha-blue p-1 rounded-md hover:bg-mocha-blue/40 duration-500">
             <ArrowLeft/>
           </a>
         {:else}
-          <a href="/settings" class="bg-mocha-base border border-mocha-blue text-mocha-blue p-1 rounded-md">
+          <a href="/settings" class="bg-mocha-base border border-mocha-blue text-mocha-blue p-1 rounded-md hover:bg-mocha-blue/40 duration-500">
             <Settings/>
           </a>
         {/if}
